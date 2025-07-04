@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRAVEL SHOES BAG - Tas Sepatu Travel Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        accent: '#F59E0B',
+                        dark: '#1F2937',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+        }
+        
+        .price-cut {
+            position: relative;
+        }
+        
+        .price-cut:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 2px;
+            background: #EF4444;
+            transform: rotate(-5deg);
+        }
+        
+        .testimonial-card {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .gallery-item {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .modal {
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .new-order-notification {
+            animation: slideIn 0.5s forwards, slideOut 0.5s forwards 3s;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateY(0); }
+            to { transform: translateY(100%); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- New Order Notification -->
+    <div id="newOrderNotification" class="new-order-notification fixed bottom-0 left-0 right-0 bg-white shadow-lg rounded-t-lg mx-4 z-50 hidden">
+        <div class="container mx-auto p-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                    <span id="avatarInitial" class="text-blue-600 font-bold"></span>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-gray-800"><span id="randomName"></span> dari <span id="randomRegion"></span></p>
+                    <p class="text-xs text-gray-500">Baru saja memesan Travel Shoes Bag</p>
+                </div>
+            </div>
+            <button onclick="closeNotification()" class="text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://cdn.orderonline.id/uploads/images_7115701706427359308.jpg" alt="Travel Shoes Bag Logo" class="h-10 mr-2">
+                <span class="text-xl font-bold text-blue-600">TRAVEL SHOES BAG</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#features" class="text-gray-700 hover:text-blue-600 font-medium">Fitur</a>
+                <a href="#gallery" class="text-gray-700 hover:text-blue-600 font-medium">Galeri</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-blue-600 font-medium">Testimoni</a>
+                <a href="#faq" class="text-gray-700 hover:text-blue-600 font-medium">FAQ</a>
+            </div>
+            <div class="flex items-center">
+                <a href="#order" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition duration-300">BELI SEKARANG</a>
+                <button class="md:hidden ml-4 text-gray-700" id="mobileMenuButton">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white shadow-lg" id="mobileMenu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#features" class="text-gray-700 hover:text-blue-600 font-medium py-2 border-b border-gray-100">Fitur</a>
+                <a href="#gallery" class="text-gray-700 hover:text-blue-600 font-medium py-2 border-b border-gray-100">Galeri</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-blue-600 font-medium py-2 border-b border-gray-100">Testimoni</a>
+                <a href="#faq" class="text-gray-700 hover:text-blue-600 font-medium py-2 border-b border-gray-100">FAQ</a>
+                <a href="#order" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium text-center transition duration-300">BELI SEKARANG</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white py-16 md:py-24">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Tas Sepatu Travel Premium</h1>
+                <p class="text-xl md:text-2xl mb-6">Solusi Praktis Bawa Sepatu Saat Bepergian</p>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle mr-2 text-green-300"></i>
+                        <span>Material Waterproof & Anti Bakteri</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle mr-2 text-green-300"></i>
+                        <span>Desain Ringkas & Stylish</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle mr-2 text-green-300"></i>
+                        <span>Kapasitas Besar untuk Berbagai Ukuran Sepatu</span>
+                    </li>
+                </ul>
+                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                    <a href="#order" class="bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg text-center transition duration-300 pulse">
+                        BELI SEKARANG <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=081249315109&text=Halo%2C%20saya%20menginginkan%20Travel%20Shoes%20bag" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-center transition duration-300">
+                        <i class="fab fa-whatsapp mr-2"></i> CHAT KAMI
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="https://cdn.orderonline.id/uploads/images_7115701706427359308.jpg" alt="Travel Shoes Bag" class="rounded-lg shadow-xl floating max-w-md w-full">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-white py-8 shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center text-center">
+                <div class="w-full sm:w-1/2 md:w-1/4 px-4 py-4">
+                    <div class="text-3xl font-bold text-blue-600" id="viewerCount">0</div>
+                    <div class="text-gray-600">Pengunjung Hari Ini</div>
+                </div>
+                <div class="w-full sm:w-1/2 md:w-1/4 px-4 py-4">
+                    <div class="text-3xl font-bold text-green-500" id="soldCount">0</div>
+                    <div class="text-gray-600">Terjual Bulan Ini</div>
+                </div>
+                <div class="w-full sm:w-1/2 md:w-1/4 px-4 py-4">
+                    <div class="text-3xl font-bold text-orange-500" id="stockCount">0</div>
+                    <div class="text-gray-600">Stok Tersisa</div>
+                </div>
+                <div class="w-full sm:w-1/2 md:w-1/4 px-4 py-4">
+                    <div class="text-3xl font-bold text-purple-600" id="happyCustomer">0</div>
+                    <div class="text-gray-600">Pelanggan Puas</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Solution Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Masalah yang Sering Dihadapi Saat Traveling</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Berikut solusi yang ditawarkan oleh Travel Shoes Bag untuk masalah Anda</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-times text-red-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Sepatu Kotor Bercampur dengan Pakaian</h3>
+                    </div>
+                    <p class="text-gray-600">Seringkali sepatu yang kotor membuat pakaian lain ikut kotor saat dimasukkan dalam satu tas.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-check text-green-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Solusi: Tas Khusus Sepatu</h3>
+                    </div>
+                    <p class="text-gray-600">Travel Shoes Bag memiliki kompartemen terpisah untuk sepatu, menjaga pakaian Anda tetap bersih dan rapi.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-times text-red-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Bau Tidak Sedap dari Sepatu</h3>
+                    </div>
+                    <p class="text-gray-600">Sepatu yang lembab dapat menimbulkan bau tidak sedap dan menyebar ke seluruh isi tas.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-check text-green-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Solusi: Material Anti Bakteri</h3>
+                    </div>
+                    <p class="text-gray-600">Dengan material khusus yang anti bakteri, Travel Shoes Bag mencegah pertumbuhan bakteri penyebab bau.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-times text-red-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Tas Terlalu Penuh dan Berantakan</h3>
+                    </div>
+                    <p class="text-gray-600">Memasukkan sepatu ke dalam tas utama membuat tas menjadi penuh dan tidak rapi.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-check text-green-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Solusi: Desain Ringkas</h3>
+                    </div>
+                    <p class="text-gray-600">Travel Shoes Bag didesain khusus untuk menghemat ruang, dengan bentuk yang dapat menyesuaikan isinya.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Fitur Unggulan Travel Shoes Bag</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Didesain khusus untuk memenuhi kebutuhan traveler modern</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg text-center">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Material Waterproof</h3>
+                    <p class="text-gray-600">Tahan air dan melindungi sepatu Anda dari hujan atau tumpahan cairan.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg text-center">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bacteria text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Anti Bakteri</h3>
+                    <p class="text-gray-600">Material khusus yang mencegah pertumbuhan bakteri penyebab bau.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg text-center">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-expand-arrows-alt text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Kapasitas Besar</h3>
+                    <p class="text-gray-600">Dapat menampung berbagai ukuran sepatu hingga size 45.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg text-center">
+                    <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lock text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Sistem Penguncian</h3>
+                    <p class="text-gray-600">Dilengkapi dengan zipper kuat yang tidak mudah rusak.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg text-center">
+                    <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-weight text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Ringan</h3>
+                    <p class="text-gray-600">Hanya 250 gram, tidak menambah beban tas Anda.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg text-center">
+                    <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tshirt text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Multifungsi</h3>
+                    <p class="text-gray-600">Bisa digunakan untuk menyimpan pakaian kotor atau kebutuhan lainnya.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <img src="https://cdn.orderonline.id/uploads/images_1676541706427362149.jpg" alt="Travel Shoes Bag Features" class="rounded-lg shadow-md mx-auto max-w-full">
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Galeri Produk</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Lihat lebih detail Travel Shoes Bag premium kami</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="gallery-item rounded-lg overflow-hidden shadow-md" onclick="openModal('https://cdn.orderonline.id/uploads/images_2414431706427358489.jpg')">
+                    <img src="https://cdn.orderonline.id/uploads/images_2414431706427358489.jpg" alt="Travel Shoes Bag" class="w-full h-48 object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-md" onclick="openModal('https://cdn.orderonline.id/uploads/images_3496531706427359529.jpg')">
+                    <img src="https://cdn.orderonline.id/uploads/images_3496531706427359529.jpg" alt="Travel Shoes Bag" class="w-full h-48 object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-md" onclick="openModal('https://cdn.orderonline.id/uploads/images_3511011706427361729.jpg')">
+                    <img src="https://cdn.orderonline.id/uploads/images_3511011706427361729.jpg" alt="Travel Shoes Bag" class="w-full h-48 object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-md" onclick="openModal('https://cdn.orderonline.id/uploads/images_5691921706427360970.jpg')">
+                    <img src="https://cdn.orderonline.id/uploads/images_5691921706427360970.jpg" alt="Travel Shoes Bag" class="w-full h-48 object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-md" onclick="openModal('https://cdn.orderonline.id/uploads/images_8495901706427359048.jpg')">
+                    <img src="https://cdn.orderonline.id/uploads/images_8495901706427359048.jpg" alt="Travel Shoes Bag" class="w-full h-48 object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-md" onclick="openModal('https://cdn.orderonline.id/uploads/images_1251241706427363908.gif')">
+                    <img src="https://cdn.orderonline.id/uploads/images_1251241706427363908.gif" alt="Travel Shoes Bag" class="w-full h-48 object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-md" onclick="openModal('https://cdn.orderonline.id/uploads/images_7773041706427363469.gif')">
+                    <img src="https://cdn.orderonline.id/uploads/images_7773041706427363469.gif" alt="Travel Shoes Bag" class="w-full h-48 object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-md" onclick="openModal('https://cdn.orderonline.id/uploads/images_7115701706427359308.jpg')">
+                    <img src="https://cdn.orderonline.id/uploads/images_7115701706427359308.jpg" alt="Travel Shoes Bag" class="w-full h-48 object-cover">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal -->
+        <div id="imageModal" class="fixed inset-0 z-50 hidden">
+            <div class="modal-overlay absolute inset-0"></div>
+            <div class="modal flex items-center justify-center min-h-screen">
+                <div class="bg-white rounded-lg max-w-4xl mx-4 relative">
+                    <button onclick="closeModal()" class="absolute -top-10 right-0 text-white text-2xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <img id="modalImage" src="" alt="Enlarged view" class="max-h-screen-80 rounded-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Apa Kata Pelanggan Kami?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Testimoni asli dari pembeli Travel Shoes Bag</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <span class="text-blue-600 font-bold">A</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Andi Pratama</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Sangat praktis untuk traveling. Sepatu tidak lagi bercampur dengan pakaian, dan tasnya ringan tapi kuat. Recommended banget!"</p>
+                </div>
+                
+                <div class="testimonial-card bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mr-4">
+                            <span class="text-purple-600 font-bold">D</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Dewi Lestari</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Materialnya benar-benar waterproof seperti di deskripsi. Sudah dipakai hiking ke gunung, sepatu tetap kering meski hujan."</p>
+                </div>
+                
+                <div class="testimonial-card bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                            <span class="text-green-600 font-bold">R</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Rina Wijaya</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Ukurannya pas untuk sepatu wanita, bahkan bisa masuk 2 pasang. Desainnya juga stylish, tidak seperti tas sepatu biasa."</p>
+                </div>
+                
+                <div class="testimonial-card bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mr-4">
+                            <span class="text-red-600 font-bold">B</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Budi Santoso</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Pengiriman cepat dan packing rapi. Produk sesuai gambar, kualitasnya premium. Worth it untuk harganya."</p>
+                </div>
+                
+                <div class="testimonial-card bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center mr-4">
+                            <span class="text-yellow-600 font-bold">S</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Siti Rahayu</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Saya sering business trip, produk ini sangat membantu. Sekarang tidak perlu khawatir sepatu formal saya lecek di tas."</p>
+                </div>
+                
+                <div class="testimonial-card bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center mr-4">
+                            <span class="text-indigo-600 font-bold">F</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Fajar Nugroho</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Tasnya kuat menahan sepatu bola saya yang berat. Resletingnya juga halus dan tidak mudah rusak seperti produk sejenis."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Pertanyaan yang Sering Diajukan</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Temukan jawaban atas pertanyaan Anda tentang Travel Shoes Bag</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white rounded-lg shadow-md mb-4 overflow-hidden">
+                    <button class="faq-question w-full text-left p-4 font-medium text-gray-800 hover:bg-gray-100 transition duration-300 flex justify-between items-center">
+                        <span>Apakah Travel Shoes Bag bisa menampung sepatu ukuran besar?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden p-4 text-gray-600 border-t border-gray-200">
+                        Ya, Travel Shoes Bag didesain untuk menampung berbagai ukuran sepatu hingga size 45. Materialnya yang elastis memungkinkan tas menyesuaikan dengan bentuk sepatu.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md mb-4 overflow-hidden">
+                    <button class="faq-question w-full text-left p-4 font-medium text-gray-800 hover:bg-gray-100 transition duration-300 flex justify-between items-center">
+                        <span>Bagaimana cara perawatan Travel Shoes Bag?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden p-4 text-gray-600 border-t border-gray-200">
+                        Anda bisa membersihkannya dengan lap basah atau mencucinya dengan air sabun. Keringkan secara alami, hindari mesin cuci atau pengering karena dapat merusak material waterproof-nya.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md mb-4 overflow-hidden">
+                    <button class="faq-question w-full text-left p-4 font-medium text-gray-800 hover:bg-gray-100 transition duration-300 flex justify-between items-center">
+                        <span>Apakah ada garansi untuk produk ini?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden p-4 text-gray-600 border-t border-gray-200">
+                        Kami memberikan garansi 1 tahun untuk kerusakan yang bukan disebabkan oleh penggunaan yang tidak semestinya. Jika ada masalah dengan produk Anda, silakan hubungi customer service kami.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md mb-4 overflow-hidden">
+                    <button class="faq-question w-full text-left p-4 font-medium text-gray-800 hover:bg-gray-100 transition duration-300 flex justify-between items-center">
+                        <span>Berapa lama waktu pengiriman?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden p-4 text-gray-600 border-t border-gray-200">
+                        Waktu pengiriman tergantung lokasi Anda. Untuk Jabodetabek biasanya 1-2 hari kerja, luar Jabodetabek 2-5 hari kerja, dan luar Jawa 3-7 hari kerja. Kami menggunakan ekspedisi terpercaya untuk memastikan produk sampai dengan aman.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md mb-4 overflow-hidden">
+                    <button class="faq-question w-full text-left p-4 font-medium text-gray-800 hover:bg-gray-100 transition duration-300 flex justify-between items-center">
+                        <span>Apakah bisa COD (Cash On Delivery)?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden p-4 text-gray-600 border-t border-gray-200">
+                        Ya, kami menyediakan layanan COD untuk area tertentu. Silakan hubungi customer service kami untuk memastikan apakah lokasi Anda termasuk area layanan COD.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section id="order" class="py-16 bg-blue-600 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-4">PROMO SPESIAL HARI INI!</h2>
+                <p class="text-xl mb-8">Dapatkan Travel Shoes Bag dengan harga terbaik sebelum promo berakhir</p>
+                
+                <div class="bg-white text-gray-800 rounded-lg shadow-xl p-6 mb-8">
+                    <div class="flex flex-col md:flex-row items-center justify-between">
+                        <div class="mb-4 md:mb-0 text-center md:text-left">
+                            <h3 class="text-2xl font-bold text-blue-600">Travel Shoes Bag Premium</h3>
+                            <p class="text-gray-600">Solusi praktis bawa sepatu saat traveling</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-gray-500 text-sm mb-1">Harga Normal</div>
+                            <div class="price-cut text-gray-400 font-medium">Rp 390.000</div>
+                            <div class="text-blue-600 font-bold text-3xl mt-2">Rp 195.000</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="flex justify-between items-center mb-4">
+                            <span>Stok Tersisa:</span>
+                            <span class="font-bold" id="stockCounter">12</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 mb-6">
+                            <div class="bg-red-500 h-2.5 rounded-full" style="width: 20%"></div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <span>Promo Berakhir Dalam:</span>
+                                <span class="font-bold" id="countdown">23:59:59</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 justify-center">
+                            <a href="https://alya.orderonline.id/travel-shoes-bag" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-center transition duration-300">
+                                BELI SEKARANG <i class="fas fa-shopping-cart ml-2"></i>
+                            </a>
+                            <a href="https://api.whatsapp.com/send?phone=081249315109&text=Halo%2C%20saya%20menginginkan%20Travel%20Shoes%20bag" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-center transition duration-300">
+                                <i class="fab fa-whatsapp mr-2"></i> CHAT KAMI
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-700 rounded-lg p-4 inline-block">
+                    <div class="flex items-center">
+                        <i class="fas fa-shield-alt text-2xl mr-3"></i>
+                        <div class="text-left">
+                            <h4 class="font-bold">GARANSI 100%</h4>
+                            <p class="text-sm">Uang kembali jika produk tidak sesuai deskripsi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">TRAVEL SHOES BAG</h3>
+                    <p class="text-gray-400">Solusi praktis untuk membawa sepatu saat traveling dengan aman dan stylish.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Tautan Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition">Fitur</a></li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-white transition">Galeri</a></li>
+                        <li><a href="#testimonials" class="text-gray-400 hover:text-white transition">Testimoni</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Kontak Kami</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">0812-4931-5109</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fab fa-whatsapp mr-2 text-gray-400"></i>
+                            <a href="https://api.whatsapp.com/send?phone=081249315109&text=Halo%2C%20saya%20menginginkan%20Travel%20Shoes%20bag" class="text-gray-400 hover:text-white transition">WhatsApp</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">cs@travelshoesbag.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2023 Travel Shoes Bag. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://api.whatsapp.com/send?phone=081249315109&text=Halo%2C%20saya%20menginginkan%20Travel%20Shoes%20bag" class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition z-40">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                answer.classList.toggle('hidden');
+                icon.classList.toggle('transform');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+        
+        // Image Modal
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            
+            modalImage.src = imageSrc;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside the image
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+        
+        // Dynamic Counters
+        function animateCounter(elementId, target, duration = 2000) {
+            const element = document.getElementById(elementId);
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    clearInterval(timer);
+                    current = target;
+                }
+                element.textContent = Math.floor(current).toLocaleString();
+            }, 16);
+        }
+        
+        // Initialize counters when scrolled into view
+        function initCounters() {
+            const counters = [
+                { id: 'viewerCount', target: 1248 },
+                { id: 'soldCount', target: 843 },
+                { id: 'stockCount', target: 12 },
+                { id: 'happyCustomer', target: 932 }
+            ];
+            
+            counters.forEach(counter => {
+                animateCounter(counter.id, counter.target);
+            });
+        }
+        
+        // Countdown Timer
+        function startCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            let hours = 23;
+            let minutes = 59;
+            let seconds = 59;
+            
+            const timer = setInterval(() => {
+                seconds--;
+                
+                if (seconds < 0) {
+                    seconds = 59;
+                    minutes--;
+                }
+                
+                if (minutes < 0) {
+                    minutes = 59;
+                    hours--;
+                }
+                
+                if (hours < 0) {
+                    clearInterval(timer);
+                    countdownElement.textContent = "PROMO BERAKHIR!";
+                    return;
+                }
+                
+                const formattedHours = hours.toString().padStart(2, '0');
+                const formattedMinutes = minutes.toString().padStart(2, '0');
+                const formattedSeconds = seconds.toString().padStart(2, '0');
+                
+                countdownElement.textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+            }, 1000);
+        }
+        
+        // New Order Notification
+        function showNewOrderNotification() {
+            const names = ['Andi', 'Budi', 'Citra', 'Dewi', 'Eka', 'Fajar', 'Gita', 'Hadi', 'Indra', 'Joko'];
+            const regions = ['Jakarta', 'Bandung', 'Surabaya', 'Medan', 'Makassar', 'Yogyakarta', 'Semarang', 'Bali', 'Palembang', 'Balikpapan'];
+            
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const randomRegion = regions[Math.floor(Math.random() * regions.length)];
+            
+            document.getElementById('randomName').textContent = randomName;
+            document.getElementById('randomRegion').textContent = randomRegion;
+            document.getElementById('avatarInitial').textContent = randomName.charAt(0);
+            
+            const notification = document.getElementById('newOrderNotification');
+            notification.classList.remove('hidden');
+            
+            // Auto hide after 5 seconds
+            setTimeout(() => {
+                notification.classList.add('hidden');
+            }, 5000);
+        }
+        
+        function closeNotification() {
+            document.getElementById('newOrderNotification').classList.add('hidden');
+        }
+        
+        // Show notification every 30 seconds
+        setInterval(showNewOrderNotification, 30000);
+        
+        // Initialize everything when page loads
+        window.addEventListener('load', () => {
+            initCounters();
+            startCountdown();
+            
+            // Show first notification after 3 seconds
+            setTimeout(showNewOrderNotification, 3000);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
